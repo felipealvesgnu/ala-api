@@ -63,8 +63,38 @@ public class PessoaFisica {
     private List<Endereco> enderecos;
 
     @OneToOne(mappedBy = "pessoaFisica", cascade = CascadeType.ALL)
-    private PretensaoContribuicao pretensaoContribuicao;
+    private Atividade atividade;
 
+    @OneToOne(mappedBy = "pessoaFisica", cascade = CascadeType.ALL)
+    private Mensalidade mensalidade;
 
+    @OneToOne(mappedBy = "pessoaFisica", cascade = CascadeType.ALL)
+    private PretensaoAtividade pretensaoAtividade;
 
+    @OneToOne(mappedBy = "pessoaFisica", cascade = CascadeType.ALL)
+    private PretensaoMensalidade pretensaoMensalidade;
+
+    //wiring mapped side
+    public void setAtividade(Atividade atividade){
+        this.atividade = atividade;
+        atividade.setPessoaFisica(this);
+    }
+
+    //Wiring mapped side
+    public void setPretensaoMensalidade(PretensaoMensalidade pretensaoMensalidade) {
+        this.pretensaoMensalidade = pretensaoMensalidade;
+        pretensaoMensalidade.setPessoaFisica(this);
+    }
+
+    //Wiring mapped side
+    public void setPretensaoAtividade(PretensaoAtividade pretensaoAtividade){
+        this.pretensaoAtividade = pretensaoAtividade;
+        pretensaoAtividade.setPessoaFisica(this);
+    }
+
+    //Wiring mapped side
+    public void setMensalidade(Mensalidade mensalidade){
+        this.mensalidade = mensalidade;
+        mensalidade.setPessoaFisica(this);
+    }
 }

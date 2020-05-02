@@ -9,7 +9,6 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "estado")
 public class Estado {
 
     @Id
