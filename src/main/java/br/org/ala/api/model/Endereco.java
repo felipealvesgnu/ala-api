@@ -16,6 +16,7 @@ import lombok.EqualsAndHashCode;
 public class Endereco {
 
     @Id
+//    @JsonIgnore
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

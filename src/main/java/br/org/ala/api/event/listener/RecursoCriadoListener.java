@@ -10,6 +10,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @Component
 public class RecursoCriadoListener implements ApplicationListener<RecursoCriadoEvent> {
 
+    /**
+     * Adiciona URI Location ao response
+     *
+     */
     @Override
     public void onApplicationEvent(RecursoCriadoEvent event) {
         HttpServletResponse response = event.getResponse();

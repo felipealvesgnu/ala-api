@@ -2,8 +2,11 @@ package br.org.ala.api.model.jpa;
 
 import br.org.ala.api.AlaApiApplication;
 import br.org.ala.api.model.Cidade;
+import br.org.ala.api.model.Pessoa;
 import br.org.ala.api.repository.CidadeRepository;
 import br.org.ala.api.repository.EstadoRepository;
+import br.org.ala.api.repository.PessoaRepository;
+import java.util.Optional;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
@@ -16,13 +19,13 @@ public class ConsultasMain {
                 .build()
                 .run(args);
 
-        CidadeRepository cidadeRepository = applicationContext.getBean(CidadeRepository.class);
-        EstadoRepository estadoRepository = applicationContext.getBean(EstadoRepository.class);
+        PessoaRepository pessoaRepository = applicationContext.getBean(PessoaRepository.class);
 
-        Iterable<Cidade> cidades = cidadeRepository.findAll();
+        Optional<Pessoa> byId = pessoaRepository.findById(94L);
 
-        for (Cidade cidade : cidades) {
-            System.out.println(cidade);
-        }
+        Pessoa pessoa = byId.get();
+
+        System.out.println(pessoa.getNome());
+
     }
 }

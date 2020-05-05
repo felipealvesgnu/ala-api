@@ -11,7 +11,6 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @Entity
-@Table(name = "pessoa_juridica")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class PessoaJuridica {
 

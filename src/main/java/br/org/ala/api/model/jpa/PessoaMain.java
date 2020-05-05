@@ -7,14 +7,14 @@ import br.org.ala.api.model.Endereco;
 import br.org.ala.api.model.Estado;
 import br.org.ala.api.model.Mensalidade;
 import br.org.ala.api.model.PagamentoTipo;
-import br.org.ala.api.model.PessoaFisica;
+import br.org.ala.api.model.Pessoa;
 import br.org.ala.api.model.PessoaTipo;
 import br.org.ala.api.model.PretensaoAtividade;
 import br.org.ala.api.model.PretensaoMensalidade;
 import br.org.ala.api.model.Rg;
 import br.org.ala.api.repository.CidadeRepository;
 import br.org.ala.api.repository.EstadoRepository;
-import br.org.ala.api.repository.PessoaFisicaRepository;
+import br.org.ala.api.repository.PessoaRepository;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,22 +30,22 @@ public class PessoaMain {
                 .build()
                 .run(args);
 
-        PessoaFisicaRepository pessoaFisicaRepository = applicationContext.getBean(PessoaFisicaRepository.class);
+        PessoaRepository pessoaRepository = applicationContext.getBean(PessoaRepository.class);
         CidadeRepository cidadeRepository = applicationContext.getBean(CidadeRepository.class);
         EstadoRepository estadoRepository = applicationContext.getBean(EstadoRepository.class);
-        cadatrar(pessoaFisicaRepository, cidadeRepository, estadoRepository);
+        cadatrar(pessoaRepository, cidadeRepository, estadoRepository);
 //        deletar(pessoaFisicaRepository, 67L);
 //        deletar(pessoaFisicaRepository, 74L);
 
     }
 
-    private static void cadatrar(PessoaFisicaRepository pessoaFisicaRepository,
+    private static void cadatrar(PessoaRepository pessoaRepository,
                                  CidadeRepository cidadeRepository,
                                  EstadoRepository estadoRepository) {
 
 
-        PessoaFisica pessoa = new PessoaFisica();
-        pessoa.setNome("Felipe");
+        Pessoa pessoa = new Pessoa();
+        pessoa.setNome("Marcelo");
         pessoa.setEmail("felipealves.gnu@gmail.com");
         pessoa.setTelefone("242342423");
         pessoa.setProfissao("Developer");
@@ -104,12 +104,12 @@ public class PessoaMain {
         mensalidade.setValor(new BigDecimal(300));
         pessoa.setMensalidade(mensalidade);
 
-        pessoaFisicaRepository.save(pessoa);
+        pessoaRepository.save(pessoa);
 
     }
 
 
-    private static void deletar(PessoaFisicaRepository pessoaFisicaRepository, Long id) {
-        pessoaFisicaRepository.deleteById(id);
+    private static void deletar(PessoaRepository pessoaRepository, Long id) {
+        pessoaRepository.deleteById(id);
     }
 }

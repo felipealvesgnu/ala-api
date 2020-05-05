@@ -1,6 +1,7 @@
 package br.org.ala.api.exceptions;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -15,13 +16,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @ControllerAdvice
 public class AlaExceptionHandler extends ResponseEntityExceptionHandler {
@@ -64,9 +60,9 @@ public class AlaExceptionHandler extends ResponseEntityExceptionHandler {
         List<Erro> erros = new ArrayList<>();
 
         for (FieldError fieldError : bndResult.getFieldErrors()) {
-            String mensagemUsuario = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
-            String mensagemDesenvolvedor = fieldError.toString();
-            erros.add(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+            String msgUsuario = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
+            String msgDesenvolvedor = fieldError.toString();
+            erros.add(new Erro(msgUsuario, msgDesenvolvedor));
         }
 
         return erros;

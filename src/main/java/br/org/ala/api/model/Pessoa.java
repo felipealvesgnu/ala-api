@@ -1,5 +1,7 @@
 package br.org.ala.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,11 +23,12 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @Entity
-@Table(name = "pessoa_fisica")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class PessoaFisica {
+@Table(name = "pessoa_fisica")
+public class Pessoa {
 
     @Id
+    @JsonIgnore
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -54,7 +57,8 @@ public class PessoaFisica {
     @NotNull
     private Boolean ativo;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @NotNull
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "pessoa_fisica_endereco",
             joinColumns = @JoinColumn(name = "pessoa_fisica_id"),
@@ -62,39 +66,44 @@ public class PessoaFisica {
     )
     private List<Endereco> enderecos;
 
-    @OneToOne(mappedBy = "pessoaFisica", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
     private Atividade atividade;
 
-    @OneToOne(mappedBy = "pessoaFisica", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
     private Mensalidade mensalidade;
 
-    @OneToOne(mappedBy = "pessoaFisica", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
     private PretensaoAtividade pretensaoAtividade;
 
-    @OneToOne(mappedBy = "pessoaFisica", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
     private PretensaoMensalidade pretensaoMensalidade;
 
     //wiring mapped side
     public void setAtividade(Atividade atividade){
         this.atividade = atividade;
-        atividade.setPessoaFisica(this);
+        atividade.setPessoa(this);
     }
 
     //Wiring mapped side
     public void setPretensaoMensalidade(PretensaoMensalidade pretensaoMensalidade) {
         this.pretensaoMensalidade = pretensaoMensalidade;
-        pretensaoMensalidade.setPessoaFisica(this);
+        pretensaoMensalidade.setPessoa(this);
     }
 
     //Wiring mapped side
     public void setPretensaoAtividade(PretensaoAtividade pretensaoAtividade){
         this.pretensaoAtividade = pretensaoAtividade;
-        pretensaoAtividade.setPessoaFisica(this);
+        pretensaoAtividade.setPessoa(this);
     }
 
     //Wiring mapped side
     public void setMensalidade(Mensalidade mensalidade){
         this.mensalidade = mensalidade;
-        mensalidade.setPessoaFisica(this);
+        mensalidade.setPessoa(this);
     }
 }
+
