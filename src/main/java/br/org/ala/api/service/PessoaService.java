@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PessoaService {
@@ -16,10 +17,12 @@ public class PessoaService {
     @Autowired
     private PessoaRepository pessoaRepository;
 
+    @Transactional
     public Pessoa salvar(Pessoa pessoa) {
         return pessoaRepository.save(pessoa);
     }
 
+    @Transactional
     public Pessoa atualizar(Long id, Pessoa pessoa) {
         Pessoa pessoaSalva = buscarPessoaPeloId(id);
         pessoaSalva.getEnderecos().clear();
@@ -29,6 +32,7 @@ public class PessoaService {
         return pessoaRepository.save(pessoaSalva);
     }
 
+    @Transactional
     public void atualizarPropriedadeAtivo(Long id, Boolean ativo) {
         Pessoa pessoSalva = buscarPessoaPeloId(id);
         pessoSalva.setAtivo(ativo);
@@ -52,13 +56,13 @@ public class PessoaService {
         return pessoaRepository.findById(id);
     }
 
+    @Transactional
     public void excluir(Long id) {
         try {
             pessoaRepository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
             e.printStackTrace();
         }
-
     }
 
     public Optional<List<Pessoa>> listarPorNome(String nome) {
