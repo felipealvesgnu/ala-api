@@ -4,6 +4,7 @@ import br.org.ala.api.AlaApiApplication;
 import br.org.ala.api.model.Atividade;
 import br.org.ala.api.model.Cidade;
 import br.org.ala.api.model.Endereco;
+import br.org.ala.api.model.EnderecoTipo;
 import br.org.ala.api.model.Estado;
 import br.org.ala.api.model.Mensalidade;
 import br.org.ala.api.model.PagamentoTipo;
@@ -51,16 +52,15 @@ public class PessoaMain {
         pessoa.setProfissao("Developer");
         pessoa.setCpf("33854304889");
 
-        Estado estado = estadoRepository.findById(26).get();
         Rg rg = new Rg();
         rg.setNumero("13241341");
         rg.setOrgEmissor("SSP");
-        rg.setEstado(estado);
+        rg.setUf("SP");
         pessoa.setRg(rg);
         pessoa.setTipo(PessoaTipo.FUNDADOR);
         pessoa.setAtivo(true);
 
-        Cidade cidade = cidadeRepository.findById(470L).get();
+        Cidade cidade = cidadeRepository.findById(8L).get();
 
         Endereco endereco1 = new Endereco();
         endereco1.setLogradouro("Av Dr. Joaquim da Silva");
@@ -69,6 +69,7 @@ public class PessoaMain {
         endereco1.setBairro("Itararé");
         endereco1.setCep("11320-400");
         endereco1.setCidade(cidade);
+        endereco1.setTipo(EnderecoTipo.RESIDENCIAL);
 
         Endereco endereco2 = new Endereco();
         endereco2.setLogradouro("Av Dr. Joaquim da Silva 2");
@@ -77,6 +78,7 @@ public class PessoaMain {
         endereco2.setBairro("Itararé 2");
         endereco2.setCep("11320-402");
         endereco2.setCidade(cidade);
+        endereco2.setTipo(EnderecoTipo.COMERCIAL);
 
         List<Endereco> enderecos = new ArrayList<>();
         enderecos.add(endereco1);
@@ -90,7 +92,7 @@ public class PessoaMain {
         PretensaoAtividade pretensaoAtividade = new PretensaoAtividade();
         pretensaoAtividade.setDescricao("Educação Financeira");
         pretensaoAtividade.setInteressePalestrar(true);
-        pretensaoAtividade.setPalestraArea("Finanças, Gestão do Tempo");
+        pretensaoAtividade.setAreaPalestra("Finanças, Gestão do Tempo");
         pessoa.setPretensaoAtividade(pretensaoAtividade);
 
         Atividade atividade = new Atividade();

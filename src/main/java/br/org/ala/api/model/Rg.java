@@ -16,7 +16,7 @@ public class Rg {
     @Column(name = "rg_org_emisor")
     private String orgEmissor;
 
-    @OneToOne
-    @JoinColumn(name = "rg_uf_id")
-    private Estado estado;
+    @Column(name = "rg_uf")
+    private String uf;
+
 }

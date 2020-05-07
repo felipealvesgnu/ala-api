@@ -30,9 +30,6 @@ public class CriaPessoaDTO {
     @NotNull
     private PessoaTipo tipo;
 
-//    @Embedded
-//    private Rg rg;
-
     private String rg;
     private String rgOrgEmissor;
     private Integer rgEstado;

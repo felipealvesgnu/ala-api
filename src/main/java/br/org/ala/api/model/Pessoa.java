@@ -1,22 +1,19 @@
 package br.org.ala.api.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.MapsId;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -25,8 +22,8 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @Entity
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name = "pessoa_fisica")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Pessoa {
 
     @Id
@@ -51,11 +48,10 @@ public class Pessoa {
     private Boolean ativo;
 
     @NotNull
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(
+    @ElementCollection
+    @CollectionTable(
             name = "pessoa_fisica_endereco",
-            joinColumns = @JoinColumn(name = "pessoa_fisica_id"),
-            inverseJoinColumns = @JoinColumn(name = "endereco_id")
+            joinColumns = @JoinColumn(name = "pessoa_fisica_id")
     )
     private List<Endereco> enderecos;
 
@@ -76,7 +72,7 @@ public class Pessoa {
     private PretensaoMensalidade pretensaoMensalidade;
 
     //wiring mapped side
-    public void setAtividade(Atividade atividade){
+    public void setAtividade(Atividade atividade) {
         this.atividade = atividade;
         atividade.setPessoa(this);
     }
@@ -88,13 +84,13 @@ public class Pessoa {
     }
 
     //Wiring mapped side
-    public void setPretensaoAtividade(PretensaoAtividade pretensaoAtividade){
+    public void setPretensaoAtividade(PretensaoAtividade pretensaoAtividade) {
         this.pretensaoAtividade = pretensaoAtividade;
         pretensaoAtividade.setPessoa(this);
     }
 
     //Wiring mapped side
-    public void setMensalidade(Mensalidade mensalidade){
+    public void setMensalidade(Mensalidade mensalidade) {
         this.mensalidade = mensalidade;
         mensalidade.setPessoa(this);
     }
