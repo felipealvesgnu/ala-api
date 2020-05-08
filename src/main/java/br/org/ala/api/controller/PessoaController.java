@@ -1,6 +1,9 @@
 package br.org.ala.api.controller;
 
+import br.org.ala.api.dto.PessoaDTO;
+import br.org.ala.api.dto.input.PessoaInputDTO;
 import br.org.ala.api.event.RecursoCriadoEvent;
+import br.org.ala.api.mapper.PessoaMapper;
 import br.org.ala.api.model.Pessoa;
 import br.org.ala.api.repository.PessoaRepository;
 import br.org.ala.api.service.PessoaService;
@@ -31,6 +34,9 @@ public class PessoaController {
     private PessoaService pessoaService;
 
     @Autowired
+    private PessoaMapper pessoaMapper;
+
+    @Autowired
     private ApplicationEventPublisher publisher;
 
     @GetMapping
@@ -48,17 +54,17 @@ public class PessoaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Pessoa>> buscar(@PathVariable Long id) {
-        Optional<Pessoa> pessoa = pessoaService.buscarPeloId(id);
+    public ResponseEntity<PessoaDTO> buscar(@PathVariable Long id) {
+        Pessoa pessoa = pessoaService.buscarPeloId(id);
+        PessoaDTO pessoaDTO = pessoaMapper.convertToDto(pessoa);
 
-        return pessoa.isPresent()
-                ? ResponseEntity.ok(pessoa)
-                : ResponseEntity.notFound().build();
+        return ResponseEntity.ok(pessoaDTO);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Pessoa adicionar(@Valid @RequestBody Pessoa pessoa, HttpServletResponse response) {
+    public Pessoa adicionar(@Valid @RequestBody PessoaInputDTO pessoaInputDTO, HttpServletResponse response) {
+        Pessoa pessoa = pessoaMapper.convertToEntity(pessoaInputDTO);
         Pessoa pessoaSalva = pessoaService.salvar(pessoa);
         publisher.publishEvent(new RecursoCriadoEvent(this, response, pessoaSalva.getId()));
 
@@ -67,8 +73,10 @@ public class PessoaController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Pessoa> atualizar(@PathVariable Long id,
-                                            @Valid @RequestBody Pessoa pessoa) {
-        Pessoa pessoaSalva = pessoaService.atualizar(id, pessoa);
+                                            @Valid @RequestBody PessoaInputDTO pessoaInputDTO) {
+        pessoaService.buscarPeloId(id);
+        Pessoa pessoa = pessoaMapper.convertToEntity(pessoaInputDTO);
+        Pessoa pessoaSalva = pessoaService.atualizar(pessoa);
 
         return ResponseEntity.ok(pessoaSalva);
     }

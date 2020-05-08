@@ -5,7 +5,6 @@ import br.org.ala.api.model.Atividade;
 import br.org.ala.api.model.Cidade;
 import br.org.ala.api.model.Endereco;
 import br.org.ala.api.model.EnderecoTipo;
-import br.org.ala.api.model.Estado;
 import br.org.ala.api.model.Mensalidade;
 import br.org.ala.api.model.PagamentoTipo;
 import br.org.ala.api.model.Pessoa;

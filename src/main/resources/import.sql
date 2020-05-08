@@ -38,3 +38,8 @@ INSERT INTO cidade VALUES (6, 'Alto Rio Novo', 8);
 INSERT INTO cidade VALUES (7, 'Anchieta', 8);
 INSERT INTO cidade VALUES (8, 'Apiacá', 8);
 INSERT INTO cidade VALUES (9, 'Aracruz', 8);
+
+
+INSERT INTO tipo_pagamento VALUE (1, 'Débito');
+INSERT INTO tipo_pagamento VALUE (2, 'Crédito');
+INSERT INTO tipo_pagamento VALUE (3, 'Consignado');

@@ -1,20 +1,19 @@
-package br.org.ala.api.dto;
+package br.org.ala.api.dto.input;
 
-import br.org.ala.api.model.Atividade;
-import br.org.ala.api.model.Mensalidade;
+import br.org.ala.api.dto.AtividadeDTO;
+import br.org.ala.api.dto.EnderecoDTO;
+import br.org.ala.api.dto.MensalidadeDTO;
+import br.org.ala.api.dto.PretensaoAtividadeDTO;
 import br.org.ala.api.model.PessoaTipo;
-import br.org.ala.api.model.PretensaoAtividade;
-import br.org.ala.api.model.PretensaoMensalidade;
-import br.org.ala.api.model.Rg;
+import java.math.BigDecimal;
 import java.util.List;
-import javax.persistence.Embedded;
 import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class CriaPessoaDTO {
+public class PessoaInputDTO {
 
     @NotNull
     private String nome;
@@ -32,7 +31,7 @@ public class CriaPessoaDTO {
 
     private String rg;
     private String rgOrgEmissor;
-    private Integer rgEstado;
+    private String rgUf;
 
     @NotNull
     private String cpf;
@@ -42,12 +41,9 @@ public class CriaPessoaDTO {
 
     private List<EnderecoDTO> enderecos;
 
-    private Atividade atividade;
-
-    private Mensalidade mensalidade;
-
-    private PretensaoAtividade pretensaoAtividade;
-
-    private PretensaoMensalidade pretensaoMensalidade;
+    private MensalidadeDTO mensalidade;
+    private AtividadeDTO atividade;
+    private PretensaoAtividadeDTO pretensaoAtividade;
+    private BigDecimal pretensaoMensalidadeValor;
 
 }

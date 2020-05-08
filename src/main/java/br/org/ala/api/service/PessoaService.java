@@ -23,37 +23,31 @@ public class PessoaService {
     }
 
     @Transactional
-    public Pessoa atualizar(Long id, Pessoa pessoa) {
-        Pessoa pessoaSalva = buscarPessoaPeloId(id);
-        pessoaSalva.getEnderecos().clear();
-        pessoaSalva.getEnderecos().addAll(pessoa.getEnderecos());
-        BeanUtils.copyProperties(pessoa, pessoaSalva, "id");
+    public Pessoa atualizar(Pessoa pessoa) {
+        //TODO - finish here
+//        Pessoa pessoaSalva = buscarPessoaPeloId(id);
+//        pessoaSalva.getEnderecos().clear();
+//        pessoaSalva.getEnderecos().addAll(pessoa.getEnderecos());
+//        BeanUtils.copyProperties(pessoa, pessoaSalva, "id");
+//        return pessoaRepository.save(pessoaSalva);
 
-        return pessoaRepository.save(pessoaSalva);
+        return pessoaRepository.save(pessoa);
     }
 
     @Transactional
     public void atualizarPropriedadeAtivo(Long id, Boolean ativo) {
-        Pessoa pessoSalva = buscarPessoaPeloId(id);
+        Pessoa pessoSalva = buscarPeloId(id);
         pessoSalva.setAtivo(ativo);
         pessoaRepository.save(pessoSalva);
     }
 
-    private Pessoa buscarPessoaPeloId(Long id) {
-        Optional<Pessoa> pessoaSalva = pessoaRepository.findById(id);
-
-        if (pessoaSalva.isPresent()) {
-            return pessoaSalva.get();
-        }
-        throw new EmptyResultDataAccessException(1);
-    }
-
-    public List<Pessoa> listar(){
+    public List<Pessoa> listar() {
         return pessoaRepository.findAll();
     }
 
-    public Optional<Pessoa> buscarPeloId(Long id) {
-        return pessoaRepository.findById(id);
+    public Pessoa buscarPeloId(Long id) {
+        Optional<Pessoa> pessoaOptional = pessoaRepository.findById(id);
+        return pessoaOptional.orElseThrow(() -> new EmptyResultDataAccessException(1));
     }
 
     @Transactional
