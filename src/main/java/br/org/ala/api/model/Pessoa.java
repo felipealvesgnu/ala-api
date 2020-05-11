@@ -68,7 +68,7 @@ public class Pessoa {
     private PretensaoAtividade pretensaoAtividade;
 
     @JsonManagedReference
-    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
     private PretensaoMensalidade pretensaoMensalidade;
 
     //wiring mapped side

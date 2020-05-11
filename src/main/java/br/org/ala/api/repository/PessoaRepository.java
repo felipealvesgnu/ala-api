@@ -10,5 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 
     Optional<List<Pessoa>> findByNomeContaining(String nome);
-
+    Optional<List<Pessoa>> findByAtivoTrue();
+    Optional<List<Pessoa>> findByAtivoFalse();
 }

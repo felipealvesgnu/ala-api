@@ -5,7 +5,6 @@ import br.org.ala.api.dto.input.PessoaInputDTO;
 import br.org.ala.api.event.RecursoCriadoEvent;
 import br.org.ala.api.mapper.PessoaMapper;
 import br.org.ala.api.model.Pessoa;
-import br.org.ala.api.repository.PessoaRepository;
 import br.org.ala.api.service.PessoaService;
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -40,8 +43,19 @@ public class PessoaController {
     private ApplicationEventPublisher publisher;
 
     @GetMapping
-    public Iterable<Pessoa> listar() {
-        return pessoaService.listar();
+    public Page<PessoaDTO> listar(@PageableDefault(size = 15) Pageable pageable) {
+        Page<Pessoa> pessoasPage = pessoaService.listar(pageable);
+        List<PessoaDTO> pessoasDTO = pessoaMapper.convertToDto(pessoasPage.getContent());
+
+        return new PageImpl<>(pessoasDTO, pageable, pessoasPage.getTotalElements());
+    }
+
+    @GetMapping(params = "incluirInativos")
+    public Iterable<Pessoa> listar(@RequestParam(required = false) Boolean incluirInativos) {
+        if (incluirInativos){
+            return pessoaService.listarInativos();
+        }
+        return pessoaService.listarAtivos();
     }
 
     @GetMapping("/por-nome")
@@ -72,13 +86,15 @@ public class PessoaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Pessoa> atualizar(@PathVariable Long id,
-                                            @Valid @RequestBody PessoaInputDTO pessoaInputDTO) {
-        pessoaService.buscarPeloId(id);
-        Pessoa pessoa = pessoaMapper.convertToEntity(pessoaInputDTO);
-        Pessoa pessoaSalva = pessoaService.atualizar(pessoa);
+    public ResponseEntity<PessoaDTO> atualizar(@PathVariable Long id,
+                                               @Valid @RequestBody PessoaInputDTO pessoaInputDTO) {
+        Pessoa pessoaSalva = pessoaService.buscarPeloId(id);
+        pessoaSalva.getEnderecos().clear();
+        pessoaMapper.convertToEntity(pessoaInputDTO, pessoaSalva);
+        pessoaService.salvar(pessoaSalva);
+        PessoaDTO pessoaDTO = pessoaMapper.convertToDto(pessoaSalva);
 
-        return ResponseEntity.ok(pessoaSalva);
+        return ResponseEntity.ok(pessoaDTO);
     }
 
     @PutMapping("/{id}/ativo")

@@ -45,7 +45,7 @@ public class PessoaMain {
 
 
         Pessoa pessoa = new Pessoa();
-        pessoa.setNome("Marcelo");
+        pessoa.setNome("José");
         pessoa.setEmail("felipealves.gnu@gmail.com");
         pessoa.setTelefone("242342423");
         pessoa.setProfissao("Developer");

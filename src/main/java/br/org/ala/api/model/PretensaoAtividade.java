@@ -21,13 +21,11 @@ import lombok.ToString;
 public class PretensaoAtividade {
 
     @Id
-//    @JsonIgnore
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String descricao;
-
     private Boolean interessePalestrar;
 
     @Column(name = "area_palestra")

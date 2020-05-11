@@ -5,11 +5,14 @@ import br.org.ala.api.dto.input.PessoaInputDTO;
 import br.org.ala.api.dto.PessoaDTO;
 import br.org.ala.api.model.Cidade;
 import br.org.ala.api.model.Pessoa;
+import br.org.ala.api.model.PretensaoMensalidade;
+import java.lang.reflect.Type;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.PropertyMap;
-import org.modelmapper.TypeMap;
-import org.modelmapper.convention.MatchingStrategies;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,20 +26,26 @@ public class PessoaMapper {
         return modelMapper.map(pessoa, PessoaDTO.class);
     }
 
-    public Pessoa convertToEntity(PessoaDTO pessoaDTO) {
-        return modelMapper.map(pessoaDTO, Pessoa.class);
-    }
-
     public Pessoa convertToEntity(PessoaInputDTO pessoaInputDTO) {
         return modelMapper.map(pessoaInputDTO, Pessoa.class);
+    }
+
+    public void convertToEntity(PessoaInputDTO pessoaInputDTO, Pessoa pessoaSalva) {
+        modelMapper.map(pessoaInputDTO, pessoaSalva);
+    }
+
+    public List<PessoaDTO> convertToDto(List<Pessoa> pessoas) {
+        Type pessoasDTOtype = new TypeToken<List<PessoaDTO>>() {}.getType();
+
+        return modelMapper.map(pessoas, pessoasDTOtype);
     }
 
     @PostConstruct
     public void addMapping() {
         modelMapper.typeMap(Pessoa.class, PessoaDTO.class)
                 .addMapping(src -> src.getRg().getNumero(), PessoaDTO::setRg);
-
         modelMapper.typeMap(Cidade.class, CidadeDTO.class)
                 .addMapping(src -> src.getEstado().getUf(), CidadeDTO::setUf);
     }
+
 }

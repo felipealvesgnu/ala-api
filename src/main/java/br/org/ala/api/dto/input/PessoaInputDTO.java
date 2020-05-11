@@ -41,9 +41,11 @@ public class PessoaInputDTO {
 
     private List<EnderecoDTO> enderecos;
 
-    private MensalidadeDTO mensalidade;
     private AtividadeDTO atividade;
     private PretensaoAtividadeDTO pretensaoAtividade;
+
+    private MensalidadeDTO mensalidade;
+    private Long pretensaoMensalidadeId;
     private BigDecimal pretensaoMensalidadeValor;
 
 }
