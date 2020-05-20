@@ -97,7 +97,6 @@ public class PessoaMain {
         Atividade atividade = new Atividade();
         atividade.setDescricao("Trabalhos administrativos na sede");
         atividade.setPalestrante(true);
-        atividade.setAreaPalestra("Gestão de Pessoas");
         pessoa.setAtividade(atividade);
 
         Mensalidade mensalidade = new Mensalidade();

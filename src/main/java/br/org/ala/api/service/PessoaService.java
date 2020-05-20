@@ -27,10 +27,14 @@ public class PessoaService {
         return allByAtivoFalse.orElseThrow(() -> new EmptyResultDataAccessException(1));
     }
 
-    public List<Pessoa> listarInativos(){
+    public List<Pessoa> listarInativos() {
         Optional<List<Pessoa>> pessoasInativas = pessoaRepository.findByAtivoFalse();
 
         return pessoasInativas.orElseThrow(() -> new EmptyResultDataAccessException(1));
+    }
+
+    public Page<Pessoa> listarPorNome(String nome, Pageable pageable) {
+        return pessoaRepository.findByNomeContaining(nome, pageable);
     }
 
     @Transactional
@@ -57,9 +61,6 @@ public class PessoaService {
     public Pessoa buscarPeloId(Long id) {
         Optional<Pessoa> pessoaOptional = pessoaRepository.findById(id);
         return pessoaOptional.orElseThrow(() -> new EmptyResultDataAccessException(1));
-    }
-    public Optional<List<Pessoa>> listarPorNome(String nome) {
-        return pessoaRepository.findByNomeContaining(nome);
     }
 
 }

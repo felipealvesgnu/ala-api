@@ -9,5 +9,4 @@ public class AtividadeDTO {
     private Long id;
     private String descricao;
     private Boolean palestrante;
-    private String areaPalestra;
 }

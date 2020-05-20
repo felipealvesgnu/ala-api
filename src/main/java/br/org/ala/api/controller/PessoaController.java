@@ -8,6 +8,7 @@ import br.org.ala.api.model.Pessoa;
 import br.org.ala.api.service.PessoaService;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,13 +61,12 @@ public class PessoaController {
         return pessoaService.listarAtivos();
     }
 
-    @GetMapping("/por-nome")
-    public ResponseEntity<Optional<List<Pessoa>>> listar(@RequestParam String nome) {
-        Optional<List<Pessoa>> optionalPessoas = pessoaService.listarPorNome(nome);
+    @GetMapping(params = "nome")
+    public ResponseEntity<Page<PessoaDTO>> listarPorNome(@RequestParam String nome, Pageable pageable) {
+        Page<Pessoa> pessoasPage = pessoaService.listarPorNome(nome, pageable);
+        Page<PessoaDTO> pessoasPageDTO = pessoasPage.map(pessoa -> pessoaMapper.convertToDto(pessoa));
 
-        return optionalPessoas.isPresent()
-                ? ResponseEntity.ok(optionalPessoas)
-                : ResponseEntity.notFound().build();
+        return pessoasPageDTO.getContent().isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(pessoasPageDTO);
     }
 
     @GetMapping("/{id}")

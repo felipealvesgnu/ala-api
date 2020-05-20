@@ -29,9 +29,6 @@ public class Atividade {
     private String descricao;
     private Boolean palestrante;
 
-    @Column(name = "area_palestra")
-    private String areaPalestra;
-
     @OneToOne
     @ToString.Exclude
     @JsonBackReference
