@@ -1,14 +1,11 @@
 package br.org.ala.api.mapper;
 
 import br.org.ala.api.dto.CidadeDTO;
-import br.org.ala.api.dto.input.PessoaInputDTO;
 import br.org.ala.api.dto.PessoaDTO;
+import br.org.ala.api.dto.input.PessoaInputDTO;
 import br.org.ala.api.model.Cidade;
 import br.org.ala.api.model.Pessoa;
-import br.org.ala.api.model.PretensaoMensalidade;
 import java.lang.reflect.Type;
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.modelmapper.ModelMapper;
@@ -46,6 +43,14 @@ public class PessoaMapper {
                 .addMapping(src -> src.getRg().getNumero(), PessoaDTO::setRg);
         modelMapper.typeMap(Cidade.class, CidadeDTO.class)
                 .addMapping(src -> src.getEstado().getUf(), CidadeDTO::setUf);
+
+        modelMapper.typeMap(PessoaInputDTO.class, Pessoa.class)
+                .addMapping(PessoaInputDTO::getRg, (Pessoa destination, String value) -> destination.getRg().setNumero(value));
+
+        modelMapper.typeMap(PessoaInputDTO.class, Pessoa.class)
+                .addMapping(src -> src, (Pessoa destination, Pessoa value) -> destination.getAtividade().setPessoa(value));
+        modelMapper.typeMap(PessoaInputDTO.class, Pessoa.class)
+                .addMapping(src -> src, (Pessoa destination, Pessoa value) -> destination.getPretensaoAtividade().setPessoa(value));
     }
 
 }

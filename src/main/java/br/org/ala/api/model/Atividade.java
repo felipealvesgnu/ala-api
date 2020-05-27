@@ -21,7 +21,6 @@ import lombok.ToString;
 public class Atividade {
 
     @Id
-//    @JsonIgnore
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,7 +28,7 @@ public class Atividade {
     private String descricao;
     private Boolean palestrante;
 
-    @OneToOne
+    @OneToOne // problema resolvido aqui
     @ToString.Exclude
     @JsonBackReference
     @JoinColumn(name = "pessoa_fisica_id")

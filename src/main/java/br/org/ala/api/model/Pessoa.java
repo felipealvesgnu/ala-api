@@ -61,11 +61,11 @@ public class Pessoa {
 
     @JsonManagedReference
     @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
-    private Mensalidade mensalidade;
+    private PretensaoAtividade pretensaoAtividade;
 
     @JsonManagedReference
     @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
-    private PretensaoAtividade pretensaoAtividade;
+    private Mensalidade mensalidade;
 
     @JsonManagedReference
     @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
@@ -75,12 +75,6 @@ public class Pessoa {
     public void setAtividade(Atividade atividade) {
         this.atividade = atividade;
         atividade.setPessoa(this);
-    }
-
-    //Wiring mapped side
-    public void setPretensaoMensalidade(PretensaoMensalidade pretensaoMensalidade) {
-        this.pretensaoMensalidade = pretensaoMensalidade;
-        pretensaoMensalidade.setPessoa(this);
     }
 
     //Wiring mapped side
@@ -94,5 +88,12 @@ public class Pessoa {
         this.mensalidade = mensalidade;
         mensalidade.setPessoa(this);
     }
+
+    //Wiring mapped side
+    public void setPretensaoMensalidade(PretensaoMensalidade pretensaoMensalidade) {
+        this.pretensaoMensalidade = pretensaoMensalidade;
+        pretensaoMensalidade.setPessoa(this);
+    }
+
 }
 

@@ -28,7 +28,7 @@ public class PretensaoMensalidade {
 
     private BigDecimal valor;
 
-    @OneToOne
+    @OneToOne(optional = false)
     @ToString.Exclude
     @JsonBackReference
     @JoinColumn(name = "pessoa_fisica_id")
