@@ -2,7 +2,7 @@ package br.org.ala.api.model;
 
 public enum PagamentoTipo {
 
-    DEBITO(1), CREDITO(2), CONSIGNADO(3);
+    CREDITO(1), BOLETO(2), DEPOSITO(3), CONSIGNADO(4);
 
     private Integer value;
 
