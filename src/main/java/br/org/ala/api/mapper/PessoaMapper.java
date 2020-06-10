@@ -41,8 +41,6 @@ public class PessoaMapper {
     public void addMapping() {
         modelMapper.typeMap(Pessoa.class, PessoaDTO.class)
                 .addMapping(src -> src.getRg().getNumero(), PessoaDTO::setRg);
-        modelMapper.typeMap(Cidade.class, CidadeDTO.class)
-                .addMapping(src -> src.getEstado().getUf(), CidadeDTO::setUf);
 
         modelMapper.typeMap(PessoaInputDTO.class, Pessoa.class)
                 .addMapping(PessoaInputDTO::getRg, (Pessoa destination, String value) -> destination.getRg().setNumero(value));
