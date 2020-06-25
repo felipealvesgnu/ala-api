@@ -4,7 +4,10 @@ import br.org.ala.api.dto.AtividadeDTO;
 import br.org.ala.api.dto.EnderecoDTO;
 import br.org.ala.api.dto.MensalidadeDTO;
 import br.org.ala.api.dto.PretensaoAtividadeDTO;
+import br.org.ala.api.dto.PretensaoMensalidadeDTO;
 import br.org.ala.api.model.PessoaTipo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.constraints.NotNull;
@@ -14,6 +17,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PessoaInputDTO {
+
+    @JsonIgnore
+    private Long id;
 
     @NotNull
     private String nome;
@@ -43,9 +49,6 @@ public class PessoaInputDTO {
 
     private AtividadeDTO atividade;
     private PretensaoAtividadeDTO pretensaoAtividade;
-
     private MensalidadeDTO mensalidade;
-    private Long pretensaoMensalidadeId;
-    private BigDecimal pretensaoMensalidadeValor;
-
+    private PretensaoMensalidadeDTO pretensaoMensalidade;
 }

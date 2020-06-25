@@ -26,6 +26,7 @@ public class PessoaDTO {
     private AtividadeDTO atividade;
     private PretensaoAtividadeDTO pretensaoAtividade;
     private MensalidadeDTO mensalidade;
-    private Long pretensaoMensalidadeId;
-    private BigDecimal pretensaoMensalidadeValor;
+//    private Long pretensaoMensalidadeId;
+//    private BigDecimal pretensaoMensalidadeValor;
+    private PretensaoMensalidadeDTO pretensaoMensalidade;
 }

@@ -33,4 +33,5 @@ public class Atividade {
     @JsonBackReference
     @JoinColumn(name = "pessoa_fisica_id")
     private Pessoa pessoa;
+
 }
