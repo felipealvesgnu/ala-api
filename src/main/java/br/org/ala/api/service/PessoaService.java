@@ -60,6 +60,7 @@ public class PessoaService {
 
     public Pessoa buscarPeloId(Long id) {
         Optional<Pessoa> pessoaOptional = pessoaRepository.findById(id);
+        Pessoa pessoa = pessoaOptional.get();
         return pessoaOptional.orElseThrow(() -> new EmptyResultDataAccessException(1));
     }
 

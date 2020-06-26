@@ -7,8 +7,6 @@ import br.org.ala.api.dto.PretensaoAtividadeDTO;
 import br.org.ala.api.dto.PretensaoMensalidadeDTO;
 import br.org.ala.api.model.PessoaTipo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.validation.constraints.NotNull;
 import lombok.Getter;
@@ -38,6 +36,7 @@ public class PessoaInputDTO {
     private String rg;
     private String rgOrgEmissor;
     private String rgUf;
+    private String mesNasc;
 
     @NotNull
     private String cpf;

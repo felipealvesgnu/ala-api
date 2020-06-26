@@ -1,7 +1,6 @@
 package br.org.ala.api.dto;
 
 import br.org.ala.api.model.PessoaTipo;
-import java.math.BigDecimal;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +18,7 @@ public class PessoaDTO {
     private String rg;
     private String rgOrgEmissor;
     private String rgUf;
+    private String mesNasc;
     private String cpf;
     private Boolean ativo;
 

@@ -1,6 +1,8 @@
 package br.org.ala.api.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
@@ -42,6 +44,8 @@ public class Pessoa {
 
     @Embedded
     private Rg rg;
+
+    private LocalDateTime mesNasc;
 
     private String cpf;
 
