@@ -37,7 +37,4 @@ public class PretensaoAtividade {
     @JoinColumn(name = "pessoa_fisica_id")
     private Pessoa pessoa;
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
 }

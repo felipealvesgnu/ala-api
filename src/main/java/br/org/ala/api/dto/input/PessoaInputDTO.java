@@ -7,6 +7,7 @@ import br.org.ala.api.dto.PretensaoAtividadeDTO;
 import br.org.ala.api.dto.PretensaoMensalidadeDTO;
 import br.org.ala.api.model.PessoaTipo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.time.LocalDate;
 import java.util.List;
 import javax.validation.constraints.NotNull;
 import lombok.Getter;
@@ -16,7 +17,6 @@ import lombok.Setter;
 @Setter
 public class PessoaInputDTO {
 
-    @JsonIgnore
     private Long id;
 
     @NotNull
@@ -36,7 +36,7 @@ public class PessoaInputDTO {
     private String rg;
     private String rgOrgEmissor;
     private String rgUf;
-    private String mesNasc;
+    private LocalDate dataNasc;
 
     @NotNull
     private String cpf;
@@ -50,4 +50,5 @@ public class PessoaInputDTO {
     private PretensaoAtividadeDTO pretensaoAtividade;
     private MensalidadeDTO mensalidade;
     private PretensaoMensalidadeDTO pretensaoMensalidade;
+
 }

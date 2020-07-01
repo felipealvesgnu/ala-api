@@ -18,7 +18,7 @@ public class PessoaDTO {
     private String rg;
     private String rgOrgEmissor;
     private String rgUf;
-    private String mesNasc;
+    private String dataNasc;
     private String cpf;
     private Boolean ativo;
 

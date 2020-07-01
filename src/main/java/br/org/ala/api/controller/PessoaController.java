@@ -79,7 +79,6 @@ public class PessoaController {
         Pessoa pessoa = pessoaMapper.convertToEntity(pessoaInputDTO);
         Pessoa pessoaSalva = pessoaService.salvar(pessoa);
         publisher.publishEvent(new RecursoCriadoEvent(this, response, pessoaSalva.getId()));
-
         return pessoaSalva;
     }
 
