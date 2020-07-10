@@ -1,4 +1,4 @@
-package br.org.ala.api.config.security;
+package br.org.ala.api.config.security.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -26,9 +26,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
-
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
@@ -45,8 +42,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .tokenStore(tokeStore())
                 .accessTokenConverter(accessTokenConverter())
                 .reuseRefreshTokens(false)
-                .authenticationManager(authenticationManager)
-                .userDetailsService(userDetailsService);
+                .authenticationManager(authenticationManager);
     }
 
     public TokenStore tokeStore(){

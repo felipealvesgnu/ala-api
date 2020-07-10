@@ -17,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,6 +43,7 @@ public class PessoaController {
     private ApplicationEventPublisher publisher;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA')")
     public Page<PessoaDTO> listar(@PageableDefault(size = 15) Pageable pageable) {
         Page<Pessoa> pessoasPage = pessoaService.listar(pageable);
         List<PessoaDTO> pessoasDTO = pessoaMapper.convertToDto(pessoasPage.getContent());
@@ -50,6 +52,7 @@ public class PessoaController {
     }
 
     @GetMapping(params = "incluirInativos")
+    @PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA')")
     public Iterable<Pessoa> listar(@RequestParam(required = false) Boolean incluirInativos) {
         if (incluirInativos){
             return pessoaService.listarInativos();
@@ -58,6 +61,7 @@ public class PessoaController {
     }
 
     @GetMapping(params = "nome")
+    @PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA')")
     public ResponseEntity<Page<PessoaDTO>> listarPorNome(@RequestParam String nome, Pageable pageable) {
         Page<Pessoa> pessoasPage = pessoaService.listarPorNome(nome, pageable);
         Page<PessoaDTO> pessoasPageDTO = pessoasPage.map(pessoa -> pessoaMapper.convertToDto(pessoa));
@@ -66,6 +70,7 @@ public class PessoaController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA')")
     public ResponseEntity<PessoaDTO> buscar(@PathVariable Long id) {
         Pessoa pessoa = pessoaService.buscarPeloId(id);
         PessoaDTO pessoaDTO = pessoaMapper.convertToDto(pessoa);
@@ -75,6 +80,7 @@ public class PessoaController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA')")
     public Pessoa adicionar(@Valid @RequestBody PessoaInputDTO pessoaInputDTO, HttpServletResponse response) {
         Pessoa pessoa = pessoaMapper.convertToEntity(pessoaInputDTO);
         Pessoa pessoaSalva = pessoaService.salvar(pessoa);
@@ -83,6 +89,7 @@ public class PessoaController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA')")
     public ResponseEntity<PessoaDTO> atualizar(@PathVariable Long id,
                                                @Valid @RequestBody PessoaInputDTO pessoaInputDTO) {
         Pessoa pessoaSalva = pessoaService.buscarPeloId(id);
@@ -96,12 +103,14 @@ public class PessoaController {
 
     @PutMapping("/{id}/ativo")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA')")
     public void atualizarPropriedadeAtivo(@PathVariable Long id, @RequestBody Boolean ativo) {
         pessoaService.atualizarPropriedadeAtivo(id, ativo);
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasAuthority('ROLE_REMOVER_PESSOA')")
     public void remover(@PathVariable Long id) {
         pessoaService.excluir(id);
     }

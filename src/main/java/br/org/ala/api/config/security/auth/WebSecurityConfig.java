@@ -1,4 +1,4 @@
-package br.org.ala.api.config.security;
+package br.org.ala.api.config.security.auth;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,14 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("felipe")
-                .password(passwordEncoder().encode("123"))
-                .roles("ADMIN");
-    }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -30,11 +22,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
-    }
-
-    @Bean
-    @Override
-    protected UserDetailsService userDetailsService() {
-        return super.userDetailsService();
     }
 }
