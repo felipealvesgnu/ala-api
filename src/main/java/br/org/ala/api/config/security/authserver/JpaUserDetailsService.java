@@ -1,4 +1,4 @@
-package br.org.ala.api.config.security.auth;
+package br.org.ala.api.config.security.authserver;
 
 import br.org.ala.api.model.Usuario;
 import br.org.ala.api.repository.UsuarioRepository;
@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

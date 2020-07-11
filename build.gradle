@@ -25,11 +25,13 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.security.oauth:spring-security-oauth2:2.3.8.RELEASE'
 	implementation 'org.springframework.security:spring-security-jwt:1.0.11.RELEASE'
+
 	implementation 'org.modelmapper:modelmapper:2.3.7'
 //	implementation 'com.github.chhsiao90:modelmapper-module-jsr310:1.2.0'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	compileOnly 'org.projectlombok:lombok:1.18.12'
 	annotationProcessor 'org.projectlombok:lombok:1.18.12'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:2.6.0'
 	runtimeOnly 'org.flywaydb:flyway-core:6.3.3'
 
