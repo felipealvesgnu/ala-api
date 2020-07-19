@@ -25,10 +25,9 @@ public class JpaUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<Usuario> usuarioOptional = usuarioRepository.findByEmail(email);
-        Usuario usuario = usuarioOptional.orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado !!!"));
+        Usuario usuario = usuarioRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado !!!"));
 
-        return new User(email, usuario.getSenha(), getPermissoes(usuario));
+        return new AuthUser(usuario, getPermissoes(usuario));
     }
 
     private Collection<? extends GrantedAuthority> getPermissoes(Usuario usuario) {
