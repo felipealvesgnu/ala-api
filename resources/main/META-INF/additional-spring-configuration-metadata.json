@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "ala.oauth2.client.id",
+      "type": "java.lang.String",
+      "description": "The client identifier."
+    },
+    {
+      "name": "ala.oauth2.client.pwd",
+      "type": "java.lang.String",
+      "description": "The identifier's password."
+    }
+  ]
+}
