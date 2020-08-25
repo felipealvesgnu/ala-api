@@ -32,9 +32,12 @@ public class Pessoa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    private String nomeConjuge;
     private String email;
     private String telefone;
     private String profissao;
+    private String facebook;
+    private String instagram;
 
     @NotNull
     @Column(name = "tipo_pessoa")
@@ -45,6 +48,7 @@ public class Pessoa {
     private Rg rg;
 
     private LocalDate dataNasc;
+    private LocalDate dataNascConjuge;
     private String cpf;
     private Boolean ativo;
 

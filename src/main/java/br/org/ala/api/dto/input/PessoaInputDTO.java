@@ -28,21 +28,24 @@ public class PessoaInputDTO {
     @NotNull
     private String telefone;
 
-    private String profissao;
-
     @NotNull
     private PessoaTipo tipo;
-
-    private String rg;
-    private String rgOrgEmissor;
-    private String rgUf;
-    private LocalDate dataNasc;
 
     @NotNull
     private String cpf;
 
     @NotNull
     private Boolean ativo;
+
+    private String nomeConjuge;
+    private String rg;
+    private String rgOrgEmissor;
+    private String rgUf;
+    private LocalDate dataNasc;
+    private LocalDate dataNascConjuge;
+    private String profissao;
+    private String facebook;
+    private String instagram;
 
     private List<EnderecoDTO> enderecos;
 
