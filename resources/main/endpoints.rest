@@ -1,0 +1,243 @@
+###
+GET http://localhost:8080/pessoas?incluirInativos=true
+
+###
+GET http://localhost:8080/pessoas?incluirInativos=false
+
+###
+GET http://localhost:8080/pessoas?size=1&page=0
+
+###
+GET http://localhost:8080/pessoas?size=2&page=0&sort=nome,asc
+
+###
+GET http://localhost:8080/pessoas?sort=nome,asc
+
+###
+GET http://localhost:8080/pessoas/31
+Authorization: Basic YW5ndWxhcjoxMjM0NQ==
+
+###
+GET http://localhost:8080/pessoas?nome=mar
+Authorization: Basic YW5ndWxhcjoxMjM0NQ==
+
+###
+GET http://localhost:8080/estados
+Authorization: Basic YW5ndWxhcjoxMjM0NQ==
+
+###
+GET http://localhost:8080/cidades?estadoId=8
+Authorization: Basic YW5ndWxhcjoxMjM0NQ==
+
+###
+DELETE http://localhost:8080/pessoas/99
+Authorization: Basic YW5ndWxhcjoxMjM0NQ==
+
+### Ativo/Inativo
+PUT http://localhost:8080/pessoas/30/ativo
+Content-Type: application/json
+Authorization: Basic YW5ndWxhcjoxMjM0NQ==
+
+false
+
+###
+POST http://localhost:8080/pessoas/
+Authorization: Basic YW5ndWxhcjoxMjM0NQ==
+Content-Type: application/json
+
+{
+  "id": null,
+  "nome":"Veniam aperiam hic autem eaque sit.",
+  "email":"washington_carvalho@bol.com.br",
+  "rg":"324219190",
+  "rgOrgEmissor":"Conseq",
+  "cpf":"727.356.105-87",
+  "profissao":"Iusto at ipsum exercitationem dolor voluptatem por",
+  "telefone":"(80) 29792-224_",
+  "tipo":"ASSOCIADO",
+  "rgUf":"MT",
+  "ativo":true,
+  "enderecos":[
+    {
+      "logradouro":"Sint quia veritatis eum itaque",
+      "numero":473,
+      "complemento":"Martins - Reis",
+      "bairro":"Quos sed dolore non corporis e",
+      "cep":"53.138-642",
+      "tipo":"RESIDENCIAL",
+      "cidade":{
+        "id":3,
+        "nome":"Águia Branca",
+        "estado":{
+          "id":8,
+          "nome":"Espírito Santo",
+          "uf":"ES"
+        }
+      }
+    }
+  ],
+  "mensalidade":{
+    "tipoPagamento":"CREDITO"
+  },
+  "atividade":{
+    "palestrante":false,
+    "descricao":"Eum voluptatum pariatur."
+  },
+  "pretensaoAtividade":{
+    "interessePalestrar":true,
+    "descricao":"safsdafsa",
+    "areaPalestra":"Sint officia eius quibusdam labore ut. Ad quisquam ullam earum sapiente saepe of"
+  },
+  "pretensaoMensalidade":{
+    "valor":0
+  }
+
+}
+
+###
+PUT http://localhost:8080/pessoas/1
+Content-Type: application/json
+Authorization: Basic YW5ndWxhcjoxMjM0NQ==
+
+{
+  "nome": "Marcelo 3",
+  "email": "felipealves.gnu@gmail.com",
+  "telefone": "242342423",
+  "profissao": "Developer 3",
+  "tipo": "FUNDADOR",
+  "rg": "6424562",
+  "rgOrgEmissor": "SSP",
+  "rgUf": "SP",
+  "cpf": "33854304889",
+  "ativo": true,
+  "enderecos": [
+    {
+      "logradouro": "Av Dr. Joaquim da Silva 3",
+      "numero": "101",
+      "complemento": "Cond. Marbelo",
+      "bairro": "Itararé",
+      "cep": "11320-400",
+      "tipo": "RESIDENCIAL",
+      "cidade": {
+        "id": 8,
+        "nome": "Apiacá",
+        "uf": "ES"
+      }
+    },
+    {
+      "logradouro": "Av Dr. Joaquim da Silva 4",
+      "numero": "101",
+      "complemento": "Cond. Marbelo",
+      "bairro": "Itararé",
+      "cep": "11320-400",
+      "tipo": "COMERCIAL",
+      "cidade": {
+        "id": 5,
+        "nome": "Batata",
+        "uf": "SP"
+      }
+    }
+  ],
+  "mensalidade": {
+    "id": 1,
+    "valor": 300.00,
+    "tipoPagamento": "CREDITO"
+  },
+  "atividade": {
+    "id": 1,
+    "descricao": "Trabalhos administrativos na sede",
+    "palestrante": true,
+    "areaPalestra": "Gestão de Pessoas"
+  },
+  "pretensaoAtividade": {
+    "id": 1,
+    "descricao": "Educação Financeira 4",
+    "interessePalestrar": true,
+    "areaPalestra": "Finanças, Gestão do Tempo"
+  },
+  "pretensaoMensalidadeId": 2,
+  "pretensaoMensalidadeValor": 200.00
+}
+
+###
+PUT http://localhost:8080/pessoas/31
+Content-Type: application/json
+Authorization: Basic YW5ndWxhcjoxMjM0NQ==
+
+{
+  "id": 31,
+  "nome": "Marcela",
+  "email": "felipealves.gnu@gmail.com",
+  "telefone": "65981400860",
+  "profissao": "Developer 3",
+  "tipo": "FUNDADOR",
+  "rg": "6424562",
+  "rgOrgEmissor": "SSX",
+  "rgUf": "SP",
+  "cpf": "33854304889",
+  "ativo": true,
+  "enderecos": [
+    {
+      "logradouro": "Av Dr. Joaquim da Silva 3",
+      "numero": "101",
+      "complemento": "Cond. Marbelo",
+      "bairro": "Itararé",
+      "cep": "11320-400",
+      "tipo": "RESIDENCIAL",
+      "cidade": {
+        "id": 8,
+        "nome": "Apiacá",
+        "estado": {
+          "id": 8,
+          "nome": "Espírito Santo",
+          "uf": "ES"
+        }
+      }
+    },
+    {
+      "logradouro": "Av Dr. Joaquim da Silva 4",
+      "numero": "101",
+      "complemento": "Cond. Marbelo",
+      "bairro": "Itararé",
+      "cep": "11320-400",
+      "tipo": "COMERCIAL",
+      "cidade": {
+        "id": 5,
+        "nome": "Alfredo Chaves",
+        "estado": {
+          "id": 8,
+          "nome": "Espírito Santo",
+          "uf": "ES"
+        }
+      }
+    }
+  ],
+  "atividade": {
+    "id": 12,
+    "descricao": "Trabalhos administrativos na sede",
+    "palestrante": true
+  },
+  "pretensaoAtividade": {
+    "id": 10,
+    "descricao": "Educação Financeira 4",
+    "interessePalestrar": true,
+    "areaPalestra": "Finanças, Gestão do Tempo"
+  },
+  "mensalidade": {
+    "id": 19,
+    "valor": 300,
+    "tipoPagamento": "BOLETO"
+  },
+  "pretensaoMensalidade": {
+    "id": 12,
+    "valor": 280
+  }
+}
+
+###
+POST localhost:8080/oauth/token HTTP/1.1
+Authorization: Basic YWxhLXdlYjp3ZWIxMjM=
+Content-Type: application/x-www-form-urlencoded
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJmZWxpcGUiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiYXRpIjoiNzBlYThjM2YtYTVjNC00ZWQ1LWJlYmItZTk4YzRiNDQyNDEwIiwiZXhwIjoxNTk2MzIxOTA0LCJhdXRob3JpdGllcyI6WyJST0xFX0FETUlOIl0sImp0aSI6ImUzM2ZkMzE3LTM2NDItNGEzNS04NmQzLWE4MWFkNjBmMzgyYyIsImNsaWVudF9pZCI6ImFsYS13ZWIifQ.IK6wXsIw6nRMjCsnrx8rEFDUcxw3zKO-wToeo92ngII
+
+username=felipe&password=123&grant_type=password

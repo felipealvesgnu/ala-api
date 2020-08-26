@@ -1,14 +1,13 @@
-name: Java CI with Gradle
+name: ala-api-pipeine
 
 on:
   push:
-    branches: [ develop ]
+    branches: develop
   pull_request:
-    branches: [ develop ]
+    branches: develop
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -27,3 +26,30 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build
+      - name: Upload artifact
+        uses: appleboy/scp-action@master
+        with: 
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          password: ${{ secrets.PWD }}
+          source: "*.jar"
+          target: "/opt/ala-api-dev"
+      - name: stop app
+        continue-on-error: true
+        uses: fifsky/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          user: ${{ secrets.USER }}
+          pass: ${{ secrets.PWD }}
+          command: |
+            cd /opt/ala-api-dev
+            ./stop.sh
+      - name: start app
+        uses: fifsky/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          user: ${{ secrets.USER }}
+          pass: ${{ secrets.PWD }}
+          command: |
+            cd /opt/ala-api-dev
+            ./start.sh

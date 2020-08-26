@@ -11,6 +11,7 @@ public class PessoaDTO {
 
     private Long id;
     private String nome;
+    private String nomeConjuge;
     private String email;
     private String telefone;
     private String profissao;
@@ -19,7 +20,10 @@ public class PessoaDTO {
     private String rgOrgEmissor;
     private String rgUf;
     private String dataNasc;
+    private String dataNascConjuge;
     private String cpf;
+    private String facebook;
+    private String instagram;
     private Boolean ativo;
 
     private List<EnderecoDTO> enderecos;
