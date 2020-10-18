@@ -1,24 +1,24 @@
 ###
-GET http://localhost:8080/pessoas?incluirInativos=true
+GET http://localhost:8080/associados?incluirInativos=true
 
 ###
-GET http://localhost:8080/pessoas?incluirInativos=false
+GET http://localhost:8080/associados?incluirInativos=false
 
 ###
-GET http://localhost:8080/pessoas?size=1&page=0
+GET http://localhost:8080/associados?size=1&page=0
 
 ###
-GET http://localhost:8080/pessoas?size=2&page=0&sort=nome,asc
+GET http://localhost:8080/associados?size=2&page=0&sort=nome,asc
 
 ###
-GET http://localhost:8080/pessoas?sort=nome,asc
+GET http://localhost:8080/associados?sort=nome,asc
 
 ###
-GET http://localhost:8080/pessoas/31
+GET http://localhost:8080/associados/31
 Authorization: Basic YW5ndWxhcjoxMjM0NQ==
 
 ###
-GET http://localhost:8080/pessoas?nome=mar
+GET http://localhost:8080/associados?nome=mar
 Authorization: Basic YW5ndWxhcjoxMjM0NQ==
 
 ###
@@ -30,18 +30,18 @@ GET http://localhost:8080/cidades?estadoId=8
 Authorization: Basic YW5ndWxhcjoxMjM0NQ==
 
 ###
-DELETE http://localhost:8080/pessoas/99
+DELETE http://localhost:8080/associados/99
 Authorization: Basic YW5ndWxhcjoxMjM0NQ==
 
 ### Ativo/Inativo
-PUT http://localhost:8080/pessoas/30/ativo
+PUT http://localhost:8080/associados/30/ativo
 Content-Type: application/json
 Authorization: Basic YW5ndWxhcjoxMjM0NQ==
 
 false
 
 ###
-POST http://localhost:8080/pessoas/
+POST http://localhost:8080/associados/
 Authorization: Basic YW5ndWxhcjoxMjM0NQ==
 Content-Type: application/json
 
@@ -95,7 +95,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8080/pessoas/1
+PUT http://localhost:8080/associados/1
 Content-Type: application/json
 Authorization: Basic YW5ndWxhcjoxMjM0NQ==
 
@@ -160,7 +160,7 @@ Authorization: Basic YW5ndWxhcjoxMjM0NQ==
 }
 
 ###
-PUT http://localhost:8080/pessoas/31
+PUT http://localhost:8080/associados/31
 Content-Type: application/json
 Authorization: Basic YW5ndWxhcjoxMjM0NQ==
 
