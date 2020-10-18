@@ -6,7 +6,6 @@ import br.org.ala.api.dto.MensalidadeDTO;
 import br.org.ala.api.dto.PretensaoAtividadeDTO;
 import br.org.ala.api.dto.PretensaoMensalidadeDTO;
 import br.org.ala.api.model.PessoaTipo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDate;
 import java.util.List;
 import javax.validation.constraints.NotNull;
@@ -15,7 +14,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PessoaInputDTO {
+public class AssociadoInputDTO {
 
     private Long id;
 

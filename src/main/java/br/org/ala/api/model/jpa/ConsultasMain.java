@@ -1,11 +1,9 @@
 package br.org.ala.api.model.jpa;
 
 import br.org.ala.api.AlaApiApplication;
-import br.org.ala.api.model.Cidade;
+import br.org.ala.api.model.Associado;
 import br.org.ala.api.model.Pessoa;
-import br.org.ala.api.repository.CidadeRepository;
-import br.org.ala.api.repository.EstadoRepository;
-import br.org.ala.api.repository.PessoaRepository;
+import br.org.ala.api.repository.AssociadoRepository;
 import java.util.Optional;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -19,13 +17,13 @@ public class ConsultasMain {
                 .build()
                 .run(args);
 
-        PessoaRepository pessoaRepository = applicationContext.getBean(PessoaRepository.class);
+        AssociadoRepository associadoRepository = applicationContext.getBean(AssociadoRepository.class);
 
-        Optional<Pessoa> byId = pessoaRepository.findById(94L);
+        Optional<Associado> byId = associadoRepository.findById(94L);
 
-        Pessoa pessoa = byId.get();
+        Associado associado = byId.get();
 
-        System.out.println(pessoa.getNome());
+        System.out.println(associado.getNome());
 
     }
 }

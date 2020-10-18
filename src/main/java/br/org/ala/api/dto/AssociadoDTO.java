@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PessoaDTO {
+public class AssociadoDTO {
 
     private Long id;
     private String nome;
