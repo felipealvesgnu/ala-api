@@ -35,6 +35,6 @@ public class PretensaoAtividade {
     @ToString.Exclude
     @JsonBackReference
     @JoinColumn(name = "pessoa_fisica_id")
-    private Pessoa pessoa;
+    private Associado associado;
 
 }
