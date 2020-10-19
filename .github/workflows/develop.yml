@@ -3,8 +3,6 @@ name: ala-api-pipeine
 on:
   push:
     branches: develop
-  pull_request:
-    branches: develop
 
 jobs:
   build:

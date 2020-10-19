@@ -7,22 +7,23 @@ import java.lang.annotation.Target;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 public @interface Check {
-    @interface Pessoas {
+
+    @interface Associados {
         @Retention(RetentionPolicy.RUNTIME)
         @Target(ElementType.METHOD)
-        @PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA')")
+        @PreAuthorize("hasAuthority('ROLE_CADASTRAR_ASSOCIADO')")
         @interface Cadastrar {
         }
 
         @Retention(RetentionPolicy.RUNTIME)
         @Target(ElementType.METHOD)
-        @PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA')")
+        @PreAuthorize("hasAuthority('ROLE_PESQUISAR_ASSOCIADO')")
         @interface Pesquisar {
         }
 
         @Retention(RetentionPolicy.RUNTIME)
         @Target(ElementType.METHOD)
-        @PreAuthorize("hasAuthority('ROLE_REMOVER_PESSOA')")
+        @PreAuthorize("hasAuthority('ROLE_REMOVER_ASSOCIADO')")
         @interface Remover {
         }
     }
